@@ -1,5 +1,5 @@
 import React from 'react';
-//import Navigation from './config/navigation';
+import Navigation from './config/navigation';
 import App from './screens/map.js';
 
 export default () => <App />;
