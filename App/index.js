@@ -1,8 +1,9 @@
 import React from 'react';
 import Navigation from './config/navigation';
-import App from './screens/map.js';
+import Map from './screens/map.js';
+import Form from './screens/form.js';
 
-export default () => <App />;
+export default () => <Form />;
 
 
 
