@@ -2,6 +2,7 @@ import React from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, SafeAreaView, TouchableOpacity} from 'react-native';
 import { Entypo } from'@expo/vector-icons';
+import database from '../config/fire.js';
 
 
 export default class App extends React.Component {
@@ -9,7 +10,18 @@ export default class App extends React.Component {
     super(props);
   }
 
+
   render() {
+
+
+
+      database.ref('O1lGo3S8LiPus2rlxlRXTIE1gyY2/')
+        .once('value')
+        .then(function(snapshot) {
+          console.log(snapshot.val())
+        });
+
+
     return (
 
       <View style={styles.container}>
