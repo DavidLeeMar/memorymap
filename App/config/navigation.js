@@ -3,19 +3,19 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-// import Home from '../screens/Home';
-// import Options from '../screens/Options';
+import Map from '../screens/Map';
+import Form from '../screens/Form';
 
-// const MainStack = createStackNavigator();
-// const MainStackScreen = () => (
-//   <MainStack.Navigator>
-//     <MainStack.Screen name="Home" component={Home} />
-//     <MainStack.Screen name="Options" component={Options} />
-//   </MainStack.Navigator>
-// );
+const MainStack = createStackNavigator();
+const MainStackScreen = () => (
+  <MainStack.Navigator initialRouteName="Map">
+    <MainStack.Screen name="Map" component={Map} />
+    <MainStack.Screen name="Form" component={Form} />
+  </MainStack.Navigator>
+);
 
-// export default () => (
-//   <NavigationContainer>
-//     <MainStackScreen />
-//   </NavigationContainer>
-// );
+export default () => (
+  <NavigationContainer>
+    <MainStackScreen />
+  </NavigationContainer>
+);
