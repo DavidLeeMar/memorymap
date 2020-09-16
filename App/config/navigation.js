@@ -9,7 +9,7 @@ import Form from '../screens/Form';
 const MainStack = createStackNavigator();
 const MainStackScreen = () => (
   <MainStack.Navigator initialRouteName="Map">
-    <MainStack.Screen name="Map" component={Map} />
+    <MainStack.Screen name="Map" component={Map} options={{headerShown: false }}/>
     <MainStack.Screen name="Form" component={Form} />
   </MainStack.Navigator>
 );
