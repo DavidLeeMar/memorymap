@@ -3,6 +3,8 @@ import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, SafeAreaView, TouchableOpacity} from 'react-native';
 import { Entypo } from'@expo/vector-icons';
 import database from '../config/fire.js';
+import { useIsFocused } from '@react-navigation/native';
+
 
 
 export default class App extends React.Component {
@@ -20,6 +22,14 @@ export default class App extends React.Component {
     this.markedIt = this.markedIt.bind(this)
   }
 
+  componentDidMount() {
+    this.props.navigation.addListener('focus', () => {
+      // The screen is focused
+      // Call any action
+      console.log("I'll tumble fooor ya")
+    });
+  }
+
   markedIt(e) {
     let newMarkers = this.state.markers;
     newMarkers.push({
@@ -33,8 +43,15 @@ export default class App extends React.Component {
     })
   }
 
+
+
+
+
+
   render() {
 
+
+      // This hook returns `true` if the screen is focused, `false` otherwise
 
 
       // database.ref('O1lGo3S8LiPus2rlxlRXTIE1gyY2/')

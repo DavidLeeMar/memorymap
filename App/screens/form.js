@@ -8,6 +8,7 @@ import {
   Button
 } from 'react-native';
 import Field from '../components/Field.js';
+import database from '../config/fire.js';
 
 const styles = StyleSheet.create({
   container: {
@@ -43,11 +44,29 @@ export default class Form extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = (text, name) => {
     this.setState({ [name]: text }, () => console.log(this.state));
   }
+
+  handleSubmit = () => {
+    //get the length of this.state.markers(prev component)
+    //endpoint/locations,   use set function to write to endpoint
+
+    database.ref(`O1lGo3S8LiPus2rlxlRXTIE1gyY2/locations/`)
+    .push()
+    .set({
+      name: this.state.name,
+      address: this.state.address,
+      description: this.state.description,
+      category: this.state.category,
+      rating: this.state.rating
+    })
+  }
+
+
 
   render() {
     return (
@@ -57,7 +76,7 @@ export default class Form extends React.Component {
         <Field name={'description'} label={'Description'}  handleChange={this.handleChange} />
         <Field name={'category'} label={'Category'}  handleChange={this.handleChange} />
         <Field name={'rating'} label={'Rating'}  handleChange={this.handleChange} />
-        <Button title={'Submit'}/>
+        <Button title={'Submit'} onPress={this.handleSubmit}/>
 
       </SafeAreaView>
 
