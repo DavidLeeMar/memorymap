@@ -4,13 +4,15 @@ import {
   TouchableOpacity,
   TextInput,
   StyleSheet,
-  SafeAreaView
+  SafeAreaView,
+  Button
 } from 'react-native';
+import Field from '../components/Field.js';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3D777A'
+    backgroundColor: '#4B7579'
   },
   fieldContainer: {
     backgroundColor: '#FFF',
@@ -27,19 +29,39 @@ const styles = StyleSheet.create({
 
 });
 
-export default () => {
+export default class Form extends React.Component {
 
-  return (
-    <SafeAreaView style={styles.container}>
+  constructor(props) {
+    super(props);
 
-      <View style={styles.fieldContainer}>
-        <TouchableOpacity style={styles.row}>
-          <TextInput style={styles.textInput} placeholder = "Name"/>
-        </TouchableOpacity>
-      </View>
+    this.state={
+      name: '',
+      address: '',
+      description: '',
+      category: '',
+      rating: '',
+    }
 
-    </SafeAreaView>
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-  );
+  handleChange = (text, name) => {
+    this.setState({ [name]: text }, () => console.log(this.state));
+  }
+
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Field name={'name'} label={'Name'} handleChange={this.handleChange} />
+        <Field name={'address'} label={'Address'}  handleChange={this.handleChange} />
+        <Field name={'description'} label={'Description'}  handleChange={this.handleChange} />
+        <Field name={'category'} label={'Category'}  handleChange={this.handleChange} />
+        <Field name={'rating'} label={'Rating'}  handleChange={this.handleChange} />
+        <Button title={'Submit'}/>
+
+      </SafeAreaView>
+
+    );
+  }
 };
 
