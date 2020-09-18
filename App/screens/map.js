@@ -5,19 +5,14 @@ import { Entypo } from '@expo/vector-icons';
 import database from '../config/fire.js';
 import { useIsFocused } from '@react-navigation/native';
 import CustomCallout from '../components/CustomCallout.js';
-
+import MapStyle from '../config/mapStyle.js'
 
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      region: {
-        latitude: 34.020922764606034,
-        longitude: -118.39458514004946,
-        latitudeDelta: .005,
-        longitudeDelta: .005
-      },
+      region: {},
       markers: []
     }
 
@@ -28,6 +23,26 @@ export default class App extends React.Component {
 
     this._unsubscribe = this.props.navigation.addListener('focus', () => {
       // The screen is focused, Call any action
+      navigator.geolocation.getCurrentPosition(position => {
+        let { latitude, longitude } = position.coords;
+        this.setState({
+          region: {
+            latitude: latitude,
+            longitude: longitude,
+            latitudeDelta: 0.09,
+            longitudeDelta: 0.04
+          }
+        })
+      }, () => {
+        this.setState({
+          region: {
+            latitude: 33.5304393,
+            longitude: -86.69327919999999,
+            latitudeDelta: 100,
+            longitudeDelta: 100
+          }
+        })
+      });
       this.getMarkers();
       console.log("I'll tumble fooor yaz,1.!")
     });
@@ -68,7 +83,6 @@ export default class App extends React.Component {
 
 
   render() {
-    console.log('---------');
     return (
 
       <View style={styles.container}>
@@ -78,12 +92,16 @@ export default class App extends React.Component {
           </TouchableOpacity>
         </SafeAreaView>
 
+      {!this.state.region.latitude
+      ? <View />
+      :
         <MapView
           style={styles.mapStyle}
-          initialRegion={this.state.region}
-          onLongPress={(e) => {
-            this.props.navigation.navigate("Form", { latlng: [e.nativeEvent.coordinate.latitude, e.nativeEvent.coordinate.longitude] });
-          }}>
+          region={this.state.region}
+          customMapStyle={MapStyle}
+          onLongPress={(e) => this.props.navigation.navigate("Form", {
+              latlng: [e.nativeEvent.coordinate.latitude, e.nativeEvent.coordinate.longitude]
+              })}>
           {this.state.markers.map((marker, i) => {
             return (
               <Marker
@@ -91,13 +109,14 @@ export default class App extends React.Component {
                 key={i}
               >
                 <Callout
-                  tooltip={true}>
-                  <CustomCallout title={marker.name} address={marker.address} />
+                tooltip={true}>
+                  <CustomCallout title={marker.name}/>
                 </Callout>
               </Marker >
             )
           })}
         </MapView>
+      }
 
       </View>
     );
