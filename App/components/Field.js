@@ -30,6 +30,7 @@ export default (props) => {
     <View style={styles.fieldContainer}>
       <TouchableOpacity style={styles.row}>
         <TextInput
+          defaultValue={props.default}
           name={props.name}
           style={styles.textInput}
           placeholder={props.label}

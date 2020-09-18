@@ -20,15 +20,31 @@ export default class App extends React.Component {
       markers: []
     }
     this.markedIt = this.markedIt.bind(this)
+    this.getMarkers = this.getMarkers.bind(this)
   }
 
   componentDidMount() {
+    this.getMarkers();
     this.props.navigation.addListener('focus', () => {
-      // The screen is focused
-      // Call any action
+      // The screen is focused, Call any action
       console.log("I'll tumble fooor ya")
     });
   }
+
+  async getMarkers() {
+    let locations = [];
+    await database.ref('O1lGo3S8LiPus2rlxlRXTIE1gyY2/')
+      .once('value')
+      .then(function(snapshot) {
+          let result = snapshot.val();
+          for (let loc in result.locations) {
+            locations.push(result.locations[loc]);
+          }
+        })
+    this.setState({markers: locations});
+  }
+
+
 
   markedIt(e) {
     let newMarkers = this.state.markers;
@@ -43,23 +59,7 @@ export default class App extends React.Component {
     })
   }
 
-
-
-
-
-
   render() {
-
-
-      // This hook returns `true` if the screen is focused, `false` otherwise
-
-
-      // database.ref('O1lGo3S8LiPus2rlxlRXTIE1gyY2/')
-      //   .once('value')
-      //   .then(function(snapshot) {
-      //     console.log(snapshot.val())
-      //   });
-
 
     return (
 
@@ -73,7 +73,10 @@ export default class App extends React.Component {
         <MapView
           style={styles.mapStyle}
           initialRegion={this.state.region}
-          onLongPress={(e) => this.markedIt(e)}>
+          onLongPress={(e) => {
+            this.props.navigation.navigate("Form", { latlng: [e.nativeEvent.coordinate.latitude, e.nativeEvent.coordinate.longitude]});
+            this.markedIt(e);
+            }}>
           {this.state.markers.map((marker, i) => {
             return (
               <Marker
