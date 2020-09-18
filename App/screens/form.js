@@ -65,23 +65,28 @@ export default class Form extends React.Component {
       this.setState({
         latitude: result.data.results[0].geometry.location.lat,
         longitude: result.data.results[0].geometry.location.lng
-      }, () => this.handleSubmit())
-    )
-  }
+      }, () => {
+        this.handleSubmit();
+      })
+      )
+      .catch(error => alert('Invalid Address'))
+    }
 
-  handleSubmit() {
-    database.ref(`O1lGo3S8LiPus2rlxlRXTIE1gyY2/locations/`)
-    .push()
-    .set({
-      name: this.state.name,
-      address: this.state.address,
-      latitude: this.state.latitude,
-      longitude: this.state.longitude,
-      description: this.state.description,
-      category: this.state.category,
-      rating: this.state.rating
-    })
-  }
+    async handleSubmit() {
+      console.log('Passed', this.state.latitude);
+      await database.ref(`O1lGo3S8LiPus2rlxlRXTIE1gyY2/locations/`)
+      .push()
+      .set({
+        name: this.state.name,
+        address: this.state.address,
+        latitude: this.state.latitude,
+        longitude: this.state.longitude,
+        description: this.state.description,
+        category: this.state.category,
+        rating: this.state.rating
+      });
+      this.props.navigation.navigate('Map');
+    }
 
   getAddressFromCoords(coords) {
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords}&key=${API}`)
@@ -113,7 +118,6 @@ export default class Form extends React.Component {
         <Field name={'rating'} label={'Rating'}  handleChange={this.handleChange} />
         <Button title={'Submit'} onPress={() => {
           this.props.route.params ? this.handleSubmit() : this.getCoordsFromAddress();
-          this.props.navigation.navigate('Map');
         }}/>
 
       </SafeAreaView>
@@ -121,4 +125,3 @@ export default class Form extends React.Component {
     );
   }
 };
-
