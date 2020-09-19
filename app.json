@@ -8,7 +8,7 @@
     "splash": {
       "image": "./App/assets/images/MM_logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#4B7579"
+      "backgroundColor": "#36454F"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
