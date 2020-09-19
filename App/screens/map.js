@@ -67,7 +67,6 @@ export default class App extends React.Component {
   }
 
   async getMarkers() {
-    console.log('in getmarkers');
     let locations = [];
     await database.ref('O1lGo3S8LiPus2rlxlRXTIE1gyY2/')
       .once('value')
@@ -77,9 +76,10 @@ export default class App extends React.Component {
           let temp = result.locations[loc];
           temp.loc = loc;
           locations.push(temp);
+          console.log('grabbed results')
         }
       })
-    this.setState({ markers: locations });
+    this.setState({ markers: locations }, ()=> console.log('set state'));
   }
 
   //more edits
@@ -108,7 +108,8 @@ export default class App extends React.Component {
             <Entypo name="plus" size={32} color="#4B7579" />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.props.navigation.navigate("Locations", {
-              markers: this.state.markers
+              markers: this.state.markers,
+              getMarkers: [this.getMarkers]
               })}>
             <Entypo name="list" size={32} color="#4B7579" />
         </TouchableOpacity>
@@ -135,7 +136,7 @@ export default class App extends React.Component {
               >
                 <Callout
                 tooltip={true}>
-                  <CustomCallout title={marker.name}/>
+                  <CustomCallout name={marker.name} address={marker.address} />
                 </Callout>
               </Marker >
             )
