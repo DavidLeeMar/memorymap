@@ -17,6 +17,7 @@ export default class App extends React.Component {
     }
 
     this.getMarkers = this.getMarkers.bind(this)
+    this.centerCurrentLocation = this.centerCurrentLocation.bind(this)
   }
 
   componentDidMount() {
@@ -51,6 +52,20 @@ export default class App extends React.Component {
     this._unsubscribe();
   }
 
+  centerCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(position => {
+      let { latitude, longitude } = position.coords;
+      this.setState({
+        region: {
+          latitude: latitude,
+          longitude: longitude,
+          latitudeDelta: 0.09,
+          longitudeDelta: 0.04
+        }
+      })
+    })
+  }
+
   async getMarkers() {
     console.log('in getmarkers');
     let locations = [];
@@ -59,7 +74,9 @@ export default class App extends React.Component {
       .then(function (snapshot) {
         let result = snapshot.val();
         for (let loc in result.locations) {
-          locations.push(result.locations[loc]);
+          let temp = result.locations[loc];
+          temp.loc = loc;
+          locations.push(temp);
         }
       })
     this.setState({ markers: locations });
@@ -87,9 +104,17 @@ export default class App extends React.Component {
 
       <View style={styles.container}>
         <SafeAreaView style={styles.header}>
-          <TouchableOpacity onPress={() => this.props.navigation.push("Form")}>
+        <TouchableOpacity onPress={() => this.props.navigation.push("Form")}>
             <Entypo name="plus" size={32} color="#4B7579" />
-          </TouchableOpacity>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("Locations", {
+              markers: this.state.markers
+              })}>
+            <Entypo name="list" size={32} color="#4B7579" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.centerCurrentLocation()}>
+            <Entypo name="location-pin" size={32} color="#4B7579" />
+        </TouchableOpacity>
         </SafeAreaView>
 
       {!this.state.region.latitude
@@ -135,6 +160,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
   },
   header: {
+    flexDirection: "row-reverse",
     alignItems: "flex-end",
     marginHorizontal: 20,
     borderColor: '#ff0000'
