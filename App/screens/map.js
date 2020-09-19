@@ -109,7 +109,6 @@ export default class App extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.props.navigation.navigate("Locations", {
               markers: this.state.markers,
-              getMarkers: [this.getMarkers]
               })}>
             <Entypo name="list" size={32} color="#4B7579" />
         </TouchableOpacity>

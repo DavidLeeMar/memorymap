@@ -64,7 +64,7 @@ export default class Locations extends React.Component{
         console.log('Data Deleted successfully!');
       }
     });
-    await this.props.route.params.getMarkers[0]();
+    //await this.props.route.params.getMarkers[0]();
     this.setState({delete: !this.state.delete});
   }
 
