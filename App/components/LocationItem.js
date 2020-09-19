@@ -27,7 +27,10 @@ const styles = StyleSheet.create({
     flexGrow: 15,
     alignItems: 'flex-start',
     maxWidth: 225,
-    backgroundColor: '#00FF00'
+  },
+  textName: {
+    color: '#FFFDD0',
+    fontWeight: 'bold'
   }
 
 
@@ -37,9 +40,9 @@ export default (props) => {
 
   return (
       <View style={styles.locationText}>
-      <Text>{props.marker.name}
+      <Text style={styles.textName}>{props.marker.name}
         </Text>
-      <Text style={{alignContent: 'flex-start', flexWrap: 'wrap', backgroundColor: '#474747'}}>{props.marker.address}
+      <Text style={{alignContent: 'flex-start', flexWrap: 'wrap', color: '#FFFDD0'}}>{props.marker.address}
         </Text>
       </View>
   );

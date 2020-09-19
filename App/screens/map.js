@@ -134,9 +134,11 @@ export default class App extends React.Component {
                 coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
                 key={i}
               >
-                <Callout
-                tooltip={true}>
-                  <CustomCallout name={marker.name} address={marker.address} />
+                <Callout tooltip={true} style={styles.callout}>
+                  <View>
+                    <Text style={styles.calloutTitle}>{marker.name}</Text>
+                    <Text style={styles.calloutAdd}>{marker.address}</Text>
+                  </View>
                 </Callout>
               </Marker >
             )
@@ -165,5 +167,20 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     marginHorizontal: 20,
     borderColor: '#ff0000'
+  },
+  calloutTitle: {
+    fontWeight: 'bold',
+    color: '#FFFDD0'
+  },
+  calloutAdd: {
+    color: '#FFFDD0'
+  },
+  callout: {
+    borderColor: '#000000',
+    borderWidth: 1,
+    backgroundColor: '#36454f',
+    borderRadius: 10,
+    zIndex: 10,
+    padding: 10
   }
 });

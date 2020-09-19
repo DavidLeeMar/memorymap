@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   fieldContainer: {
     backgroundColor: '#FFF',
     marginVertical: 10,
-    marginHorizontal: 20
+    marginHorizontal: 20,
+    borderRadius: 10
   },
   row: {
     paddingHorizontal: 20,

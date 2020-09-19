@@ -16,7 +16,7 @@ import API from '../config/api.js'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#4B7579'
+    backgroundColor: '#36454f'
   },
   fieldContainer: {
     backgroundColor: '#FFF',
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   textInput: {
     fontSize: 16
   }
-
 });
 
 export default class Form extends React.Component {
@@ -116,7 +115,7 @@ export default class Form extends React.Component {
         <Field name={'description'} label={'Description'}  handleChange={this.handleChange} />
         <Field name={'category'} label={'Category'}  handleChange={this.handleChange} />
         <Field name={'rating'} label={'Rating'}  handleChange={this.handleChange} />
-        <Button title={'Submit'} onPress={() => {
+        <Button color={'#FFFDD0'} title={'Submit'} onPress={() => {
           this.props.route.params ? this.handleSubmit() : this.getCoordsFromAddress();
         }}/>
 

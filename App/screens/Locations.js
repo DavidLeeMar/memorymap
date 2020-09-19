@@ -10,17 +10,19 @@ import LocationItem from '../components/LocationItem.js';
 
 const styles = StyleSheet.create({
   fieldContainer: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#36454f',
     marginVertical: 10,
     marginHorizontal: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderRadius: 10,
+    padding: 10,
+    paddingLeft: 20
   },
   deleteIcon: {
     flexGrow: 1,
     alignItems: 'center',
-    backgroundColor: '#FF0000'
   },
   locationText: {
     flexGrow: 15,
@@ -31,7 +33,6 @@ const styles = StyleSheet.create({
   arrowIcon: {
     flexGrow: 1,
     alignItems: 'flex-end',
-    backgroundColor: '#0000FF'
   }
 });
 
@@ -75,10 +76,10 @@ export default class Locations extends React.Component{
         {this.props.route.params.markers.map((marker, i) =>
           <View key={i} style={styles.fieldContainer}>
 
-            <TouchableOpacity onPress={() => this.deleteItem(marker.loc)} style={styles.deleteIcon}>
-              <Entypo name="circle-with-cross" size={32} color="#4B7579" />
-            </TouchableOpacity>
-
+            {//<TouchableOpacity onPress={() => this.deleteItem(marker.loc)} style={styles.deleteIcon}>
+            //<Entypo name="circle-with-cross" size={32} color="#4B7579" />
+            //</TouchableOpacity>
+            }
             <LocationItem marker={marker} style={styles.locationText}/>
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate("Information", { marker: [marker] })} style={styles.arrowIcon}>
