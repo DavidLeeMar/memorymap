@@ -30,8 +30,8 @@ export default class App extends React.Component {
           region: {
             latitude: latitude,
             longitude: longitude,
-            latitudeDelta: 0.09,
-            longitudeDelta: 0.04
+            latitudeDelta: 0.009,
+            longitudeDelta: 0.004
           }
         })
       }, () => {
@@ -59,8 +59,8 @@ export default class App extends React.Component {
         region: {
           latitude: latitude,
           longitude: longitude,
-          latitudeDelta: 0.09,
-          longitudeDelta: 0.04
+          latitudeDelta: 0.009,
+          longitudeDelta: 0.004
         }
       })
     })
