@@ -45,7 +45,6 @@ export default class App extends React.Component {
         })
       });
       this.getMarkers();
-      console.log("I'll tumble fooor yaz,1.!")
     });
   }
   componentWillUnmount() {
@@ -58,7 +57,7 @@ export default class App extends React.Component {
       this.setState({
         region: {
           latitude: latitude,
-          longitude: longitude,
+          longitude: longitude,ç.
           latitudeDelta: 0.009,
           longitudeDelta: 0.004
         }
@@ -68,7 +67,7 @@ export default class App extends React.Component {
 
   async getMarkers() {
     let locations = [];
-    await database.ref('O1lGo3S8LiPus2rlxlRXTIE1gyY2/')
+    await database.ref('0O1lGo3S8LiPus2rlxlRXTIE1gyY2/')
       .once('value')
       .then(function (snapshot) {
         let result = snapshot.val();
