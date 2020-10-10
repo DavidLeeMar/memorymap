@@ -14,5 +14,3 @@ web-build/
 .DS_Store
 
 #firebase
-fire.js
-api.js
