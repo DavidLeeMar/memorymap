@@ -76,28 +76,10 @@ export default class App extends React.Component {
           let temp = result.locations[loc];
           temp.loc = loc;
           locations.push(temp);
-          console.log('grabbed results')
         }
       })
-    this.setState({ markers: locations }, ()=> console.log('set state'));
+    this.setState({ markers: locations });
   }
-
-  //more edits
-  // this.markedIt = this.markedIt.bind(this)
-  // markedIt(e) {
-  //   let newMarkers = this.state.markers;
-  //   newMarkers.push({
-  //     latitude: e.nativeEvent.coordinate.latitude,
-  //     longitude: e.nativeEvent.coordinate.longitude,
-  //     // title: "This App's Name Is",
-  //     // description: "püpr"
-  //   })
-  //   this.setState({
-  //     markers: newMarkers
-  //   })
-  // }
-  // this.markedIt(e);
-
 
   render() {
     return (
