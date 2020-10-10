@@ -67,7 +67,7 @@ export default class App extends React.Component {
 
   async getMarkers() {
     let locations = [];
-    await database.ref('0O1lGo3S8LiPus2rlxlRXTIE1gyY2/')
+    await database.ref('O1lGo3S8LiPus2rlxlRXTIE1gyY2/')
       .once('value')
       .then(function (snapshot) {
         let result = snapshot.val();
