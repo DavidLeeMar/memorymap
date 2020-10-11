@@ -1,6 +1,7 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 import * as firebase from 'firebase';
+import API from api.js;
 
 // Optionally import the services that you want to use
 //import "firebase/auth";
@@ -9,15 +10,17 @@ import * as firebase from 'firebase';
 //import "firebase/functions";
 //import "firebase/storage";
 
-const firebaseConfig = {
-  apiKey: "",
-  authDomain: "memory-map-289523.firebaseapp.com",
-  databaseURL: "https://memory-map-289523.firebaseio.com",
-  projectId: "memory-map-289523",
-  storageBucket: "memory-map-289523.appspot.com",
-  messagingSenderId: "1071936718149",
-  appId: "1:1071936718149:web:0ee27f5c53d438ce9eaa2c",
-  measurementId: "G-CTD3ERH3TJ"
+
+
+var firebaseConfig = {
+  apiKey: API,
+  authDomain: "memorymapdm.firebaseapp.com",
+  databaseURL: "https://memorymapdm.firebaseio.com",
+  projectId: "memorymapdm",
+  storageBucket: "memorymapdm.appspot.com",
+  messagingSenderId: "325356274690",
+  appId: "1:325356274690:web:77d79bc91a93509dd7531b",
+  measurementId: "G-3X8HFV01SC"
 };
 
 firebase.initializeApp(firebaseConfig);
