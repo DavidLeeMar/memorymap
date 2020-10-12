@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import { StyleSheet, View, Text, Image } from 'react-native';
 
+//Where is propTypes used?
 const propTypes = {
   style: PropTypes.object,
 };
+
 
 class CustomCallout extends React.Component {
   render() {

@@ -57,7 +57,7 @@ export default class App extends React.Component {
       this.setState({
         region: {
           latitude: latitude,
-          longitude: longitude,ç.
+          longitude: longitude,
           latitudeDelta: 0.009,
           longitudeDelta: 0.004
         }
@@ -67,6 +67,7 @@ export default class App extends React.Component {
 
   async getMarkers() {
     let locations = [];
+    //writes to one particular user's database
     await database.ref('O1lGo3S8LiPus2rlxlRXTIE1gyY2/')
       .once('value')
       .then(function (snapshot) {

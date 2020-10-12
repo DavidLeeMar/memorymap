@@ -7,7 +7,7 @@ import {
   SafeAreaView
 } from 'react-native';
 
-
+//Why is styles defined outside the component? Sometimes it defined below, Sometimes above
 const styles = StyleSheet.create({
   fieldContainer: {
     backgroundColor: '#FFF',

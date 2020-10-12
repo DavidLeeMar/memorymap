@@ -1,7 +1,7 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 import * as firebase from 'firebase';
-import API from api.js;
+import API from './apikey.js';
 
 // Optionally import the services that you want to use
 //import "firebase/auth";

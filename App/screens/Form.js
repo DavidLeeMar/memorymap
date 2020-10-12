@@ -10,7 +10,7 @@ import {
 import Field from '../components/Field.js';
 import database from '../config/fire.js';
 import axios from 'axios';
-import API from '../config/api.js'
+import API from '../config/apikey.js'
 
 
 const styles = StyleSheet.create({
@@ -53,7 +53,7 @@ export default class Form extends React.Component {
   }
 
   handleChange = (text, name) => {
-    this.setState({ [name]: text }, () => console.log(this.state));
+    this.setState({ [name]: text })
   }
 
   getCoordsFromAddress() {
@@ -68,11 +68,10 @@ export default class Form extends React.Component {
         this.handleSubmit();
       })
       )
-      .catch(error => alert('Invalid Address'))
+      .catch(error => alert(`Invalid Address`))
     }
 
     async handleSubmit() {
-      console.log('Passed', this.state.latitude);
       await database.ref(`O1lGo3S8LiPus2rlxlRXTIE1gyY2/locations/`)
       .push()
       .set({
@@ -94,12 +93,11 @@ export default class Form extends React.Component {
           address: result.data.results[0].formatted_address,
           latitude: this.props.route.params.latlng[0],
           longitude: this.props.route.params.latlng[1]
-        }, () => console.log(this.state))
+        })
       })
   }
 
   componentDidMount() {
-    // console.log(this.props.route.params)
     //convert route params here to address
     if (this.props.route.params) {
       let coords = `${this.props.route.params.latlng[0]},${this.props.route.params.latlng[1]}`
