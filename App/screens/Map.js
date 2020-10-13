@@ -76,7 +76,6 @@ export default class App extends React.Component {
       .once('value')
       .then(function (snapshot) {
         let result = snapshot.val();
-        console.log(result);
         for (let id in result.locations) {
           let location = result.locations[id];
           location.id = id;

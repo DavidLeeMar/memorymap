@@ -1,2 +1,2 @@
 # memorymap
-test 2:37
+npm install
