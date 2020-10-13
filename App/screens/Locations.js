@@ -67,6 +67,8 @@ export default class Locations extends React.Component{
             }
             <LocationItem marker={marker} style={styles.locationText}/>
 
+            {//navigates to the detailed information for each location
+            }
             <TouchableOpacity onPress={() => this.props.navigation.navigate("Information", { marker: [marker] })} style={styles.arrowIcon}>
               <Entypo name="chevron-right" size={32} color="#4B7579" />
             </TouchableOpacity>
