@@ -28,12 +28,15 @@ export default class App extends React.Component {
         let { latitude, longitude } = position.coords;
         this.setState({
           region: {
+            //grabbing coordinates of your current position
             latitude: latitude,
             longitude: longitude,
+            //delta determines how zoomed into the map you want
             latitudeDelta: 0.009,
             longitudeDelta: 0.004
           }
         })
+         //if current location cannot be determined, use this location
       }, () => {
         this.setState({
           region: {
@@ -44,6 +47,7 @@ export default class App extends React.Component {
           }
         })
       });
+      //retrieves existing locations from database
       this.getMarkers();
     });
   }
@@ -67,15 +71,16 @@ export default class App extends React.Component {
 
   async getMarkers() {
     let locations = [];
-    //writes to one particular user's database
+    //read from one particular user's database
     await database.ref('O1lGo3S8LiPus2rlxlRXTIE1gyY2/')
       .once('value')
       .then(function (snapshot) {
         let result = snapshot.val();
-        for (let loc in result.locations) {
-          let temp = result.locations[loc];
-          temp.loc = loc;
-          locations.push(temp);
+        console.log(result);
+        for (let id in result.locations) {
+          let location = result.locations[id];
+          location.id = id;
+          locations.push(location);
         }
       })
     this.setState({ markers: locations });
@@ -103,6 +108,7 @@ export default class App extends React.Component {
       ? <View />
       :
         <MapView
+          //mapStyle used for customizing map on Google phones https://mapstyle.withgoogle.com/
           style={styles.mapStyle}
           region={this.state.region}
           customMapStyle={MapStyle}
@@ -136,8 +142,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    //alignItems: 'center',
-    //justifyContent: 'center',
   },
   mapStyle: {
     width: Dimensions.get('window').width,
