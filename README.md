@@ -1,15 +1,35 @@
-# memorymap
-A mobile application that journals and saves locations on a map
+# Memory Map
+A mobile application that journals and saves locations on a map.
+
+## Table of Contents
+
+1. [Demo](#Demo)
+2. [Dependencies](#Dependencies)
+3. [Usage](#Usage)
 
 
-## Getting Started
+## Demo
 
-Install dependencies
+
+## Dependencies
+
+1. Install Node.js
+2. Install Expo CLI globally
+
+```
+npm install expo-cli --global
+```
+
+3. Install dependencies
+
 ```
 npm install
 ```
 
-Start the app
+## Usage
+
+To start the application, run expo start in a terminal window
+
 ```
 expo start
 ```
