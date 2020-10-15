@@ -9,7 +9,9 @@ A mobile application that journals and saves locations on a map.
 
 
 ## Demo
+https://youtu.be/7BgeBnHYDHs
 
+![](https://i.imgur.com/CG8RkL5.png)
 
 ## Dependencies
 
